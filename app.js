@@ -1,74 +1,120 @@
-// 슬라이드 배너
-let slideIndex = 0;
-const slides = document.querySelectorAll(".slider__slide");
-const track = document.getElementById("sliderTrack");
+// ===== Helpers =====
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
 
-function showSlide(index){
-  if(index >= slides.length){
-    slideIndex = 0;
-  }
-  if(index < 0){
-    slideIndex = slides.length -1;
-  }
-  track.style.transform = "translateX(-"+slideIndex*100+"%)";
-}
-
-function nextSlide(){
-  slideIndex++;
-  showSlide(slideIndex);
-}
-
-function prevSlide(){
-  slideIndex--;
-  showSlide(slideIndex);
-}
-
-setInterval(()=>{
-  slideIndex++;
-  showSlide(slideIndex);
-},4000);
-
-// 전화 팝업
-const modal = document.getElementById("callModal");
-
-function openModal(){
+// ===== Modal (지역별 전화) =====
+const modal = $("#callModal");
+const openModal = () => {
+  if (!modal) return;
   modal.classList.add("open");
-}
-
-function closeModal(){
+  modal.setAttribute("aria-hidden", "false");
+};
+const closeModal = () => {
+  if (!modal) return;
   modal.classList.remove("open");
-}
+  modal.setAttribute("aria-hidden", "true");
+};
 
-document.getElementById("btnCallTop")?.addEventListener("click",openModal);
-document.getElementById("btnCallHero")?.addEventListener("click",openModal);
-document.getElementById("btnCallBottom")?.addEventListener("click",openModal);
-document.getElementById("btnCallFab")?.addEventListener("click",openModal);
+["#btnCallTop","#btnCallHero","#btnCallBottom","#btnCallFab","#btnCallSticky"]
+  .forEach(id => $(id)?.addEventListener("click", openModal));
 
-document.getElementById("modalClose")?.addEventListener("click",closeModal);
-document.getElementById("modalX")?.addEventListener("click",closeModal);
+$("#modalClose")?.addEventListener("click", closeModal);
+$("#modalX")?.addEventListener("click", closeModal);
 
-// 위로가기 버튼
-document.getElementById("btnTop")?.addEventListener("click",()=>{
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
 });
 
-// 스크롤 애니메이션
-const reveals = document.querySelectorAll(".reveal");
+// 카드 섹션의 “전화 상담” 버튼들
+$$(".btnCallAny").forEach(btn => btn.addEventListener("click", openModal));
 
-function reveal(){
-  const windowHeight = window.innerHeight;
+// ===== Slider =====
+const track = $("#sliderTrack");
+const slides = $$("#sliderTrack .slider__slide");
+const dotsWrap = $("#dots");
+const prevBtn = $("#prevBtn");
+const nextBtn = $("#nextBtn");
+const viewport = $("#sliderViewport");
 
-  reveals.forEach(el=>{
-    const top = el.getBoundingClientRect().top;
+let idx = 0;
+let timer = null;
 
-    if(top < windowHeight - 80){
-      el.classList.add("show");
-    }
+function renderDots() {
+  if (!dotsWrap) return;
+  dotsWrap.innerHTML = "";
+  slides.forEach((_, i) => {
+    const b = document.createElement("button");
+    b.className = "dotbtn" + (i === idx ? " active" : "");
+    b.addEventListener("click", () => go(i, true));
+    dotsWrap.appendChild(b);
   });
 }
 
-window.addEventListener("scroll",reveal);
-reveal();
+function go(nextIndex, resetAuto = false) {
+  if (!track || slides.length === 0) return;
+  idx = (nextIndex + slides.length) % slides.length;
+  track.style.transform = `translateX(-${idx * 100}%)`;
+  renderDots();
+  if (resetAuto) startAuto();
+}
+
+function startAuto() {
+  if (timer) clearInterval(timer);
+  timer = setInterval(() => go(idx + 1), 4200);
+}
+
+prevBtn?.addEventListener("click", () => go(idx - 1, true));
+nextBtn?.addEventListener("click", () => go(idx + 1, true));
+
+viewport?.addEventListener("mouseenter", () => timer && clearInterval(timer));
+viewport?.addEventListener("mouseleave", () => startAuto());
+
+renderDots();
+startAuto();
+
+// ===== Scroll: Top button + Sticky CTA =====
+const btnTop = $("#btnTop");
+const sticky = $("#stickyCta");
+
+function onScroll() {
+  const y = window.scrollY || document.documentElement.scrollTop;
+
+  // top 버튼: 300px부터 표시
+  if (btnTop) btnTop.style.display = y > 300 ? "flex" : "none";
+
+  // 모바일 스티키 CTA: 250px부터 표시(모바일에서만 CSS가 display:grid)
+  if (sticky) sticky.style.opacity = y > 250 ? "1" : "0";
+}
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+
+btnTop?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ===== Reveal Animation =====
+const reveals = $$(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("show");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach((el) => io.observe(el));
+} else {
+  // fallback
+  const revealFallback = () => {
+    const wh = window.innerHeight;
+    reveals.forEach((el) => {
+      const top = el.getBoundingClientRect().top;
+      if (top < wh - 80) el.classList.add("show");
+    });
+  };
+  window.addEventListener("scroll", revealFallback, { passive: true });
+  revealFallback();
+}
