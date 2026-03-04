@@ -437,10 +437,25 @@ b{font-weight:900}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease, transform .7s ease}
 .reveal.show{opacity:1;transform:translateY(0)}
-.company_logo{
-height:28px;
-margin-left:10px;
-opacity:0.9;
+/* HEADER LOGO FIX */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand__text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.header_logo{
+  height:20px;         /* 여기서 크기 조절 */
+  width:auto;
+  max-width:120px;     /* 너무 커지는 거 방지 */
+  object-fit:contain;
+  flex:0 0 auto;
 }
 /* RESPONSIVE */
 @media (max-width:980px){
