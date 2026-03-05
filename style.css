@@ -592,13 +592,6 @@ transform: scale(1.05);
   margin: 10px auto 0;
 }
 
-/* 모바일에서는 더 낮게 */
-@media (max-width: 560px) {
-  .product_card img,
-  .card img,
-  .pcard img {
-    height: 180px;
-  }
 }
   /* 카드 이미지 영역 고정 */
 .pcard_top{
@@ -630,4 +623,22 @@ overflow:hidden;
   object-fit: contain;
   display:block;
   margin: 0 auto;
+}
+/* ===== PC 카드 이미지 크기 조정 (모바일 영향 없음) ===== */
+
+@media (min-width: 768px){
+
+  .pcard_top{
+    height:200px;
+  }
+
+  .pcard img{
+    width: auto;
+    max-width: 320px;
+    height: auto;
+    max-height: 180px;
+    margin: 10px auto;
+    object-fit: contain;
+  }
+
 }
