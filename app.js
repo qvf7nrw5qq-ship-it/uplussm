@@ -118,3 +118,25 @@ if ("IntersectionObserver" in window) {
   window.addEventListener("scroll", revealFallback, { passive: true });
   revealFallback();
 }
+// 배너 슬라이더
+(function () {
+
+const track = document.querySelector(".slider_track");
+const slides = document.querySelectorAll(".slide");
+const prev = document.getElementById("btnPrev");
+const next = document.getElementById("btnNext");
+
+if(!track) return;
+
+let index = 0;
+const max = slides.length;
+
+function move(i){
+index = (i + max) % max;
+track.style.transform = "translateX(-"+(index*100)+"%)";
+}
+
+prev.addEventListener("click", () => move(index-1));
+next.addEventListener("click", () => move(index+1));
+
+})();
