@@ -598,3 +598,26 @@ align-items:center;
 justify-content:center;
 overflow:hidden;
 }
+/* ===== PC 카드 이미지가 너무 커지는 문제 FIX (데스크탑 기본값) ===== */
+
+/* 카드 이미지 영역(위쪽) 높이 고정 + 중앙정렬 */
+.pcard_top{
+  height: 220px;              /* PC에서 너무 길어지지 않게 */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* 카드 안의 상품 이미지 크기 제한 */
+.pcard_top img,
+.product_card img,
+.card img{
+  width: 100%;
+  max-width: 320px;           /* ← PC에서 이게 핵심(너무 커지지 않게) */
+  max-height: 200px;          /* 이미지 높이 제한 */
+  height: auto;
+  object-fit: contain;
+  display:block;
+  margin: 0 auto;
+}
