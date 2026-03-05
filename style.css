@@ -501,4 +501,10 @@ height:340px;
 .slider{
 height:220px;
 }
+.card_icon{
+width:46px;
+height:46px;
+margin:0 auto 12px;
+display:block;
+object-fit:contain;
 }
