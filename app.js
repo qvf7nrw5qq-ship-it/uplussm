@@ -140,3 +140,10 @@ prev.addEventListener("click", () => move(index-1));
 next.addEventListener("click", () => move(index+1));
 
 })();
+document.querySelectorAll(".btnScrollCta").forEach(btn=>{
+btn.addEventListener("click",()=>{
+document.getElementById("cta").scrollIntoView({
+behavior:"smooth"
+});
+});
+});
