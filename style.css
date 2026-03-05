@@ -451,7 +451,7 @@ b{font-weight:900}
 }
 
 .header_logo{
-  height:20px;         /* 여기서 크기 조절 */
+  height:40px;         /* 여기서 크기 조절 */
   width:auto;
   max-width:120px;     /* 너무 커지는 거 방지 */
   object-fit:contain;
