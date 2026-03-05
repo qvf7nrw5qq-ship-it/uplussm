@@ -496,7 +496,28 @@ background:#000;
 .slider{
 height:340px;
 }
+/* 카드 디자인 업그레이드 */
 
+.product_card{
+background:#fff;
+border-radius:18px;
+padding:20px;
+transition:all .25s ease;
+box-shadow:0 6px 18px rgba(0,0,0,0.06);
+text-align:center;
+}
+
+.product_card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+.product_card img{
+margin-top:10px;
+  max-height:220px;
+object-fit:contain;
+  display:block;
+}
 @media (max-width:560px){
 .slider{
 height:220px;
@@ -507,4 +528,38 @@ height:46px;
 margin:0 auto 12px;
 display:block;
 object-fit:contain;
+}
+/* 카드 뱃지 업그레이드 */
+
+.badge{
+display:inline-block;
+font-size:12px;
+font-weight:600;
+padding:4px 10px;
+border-radius:20px;
+margin-bottom:10px;
+background:rgba(255,0,110,0.08);
+color:#ff006e;
+}
+
+.badge.hot{
+background:#ffe5ee;
+color:#ff2a6d;
+}
+
+.badge.recommend{
+background:#eef3ff;
+color:#3b5cff;
+}
+
+.badge.uplus{
+background:#ffe6f3;
+color:#ff007a;
+}
+.product_card img{
+transition: transform .3s ease;
+}
+
+.product_card:hover img{
+transform: scale(1.05);
 }
