@@ -147,3 +147,99 @@ behavior:"smooth"
 });
 });
 });
+/* =========================
+   개인정보 동의 / 상세 약관 모달
+========================= */
+
+const consentModal = document.getElementById("consentModal");
+const consentBackdrop = document.getElementById("consentBackdrop");
+const consentClose = document.getElementById("consentClose");
+const consentCancel = document.getElementById("consentCancel");
+const consentConfirm = document.getElementById("consentConfirm");
+const consentRequired = document.getElementById("consentRequired");
+const consentMarketing = document.getElementById("consentMarketing");
+
+const policyModal = document.getElementById("policyModal");
+const policyBackdrop = document.getElementById("policyBackdrop");
+const policyClose = document.getElementById("policyClose");
+const policyConfirm = document.getElementById("policyConfirm");
+const openPolicyLink = document.getElementById("openPolicyLink");
+
+let pendingAction = null;
+
+function updateConsentButton(){
+  if(!consentConfirm || !consentRequired) return;
+  consentConfirm.disabled = !consentRequired.checked;
+}
+
+function openConsent(action){
+  pendingAction = action;
+
+  if(consentRequired) consentRequired.checked = false;
+  if(consentMarketing) consentMarketing.checked = false;
+  updateConsentButton();
+
+  consentModal.classList.add("open");
+  consentModal.setAttribute("aria-hidden", "false");
+}
+
+function closeConsent(){
+  consentModal.classList.remove("open");
+  consentModal.setAttribute("aria-hidden", "true");
+  pendingAction = null;
+}
+
+function openPolicy(){
+  policyModal.classList.add("open");
+  policyModal.setAttribute("aria-hidden", "false");
+}
+
+function closePolicy(){
+  policyModal.classList.remove("open");
+  policyModal.setAttribute("aria-hidden", "true");
+}
+
+consentRequired?.addEventListener("change", updateConsentButton);
+
+consentBackdrop?.addEventListener("click", closeConsent);
+consentClose?.addEventListener("click", closeConsent);
+consentCancel?.addEventListener("click", closeConsent);
+
+openPolicyLink?.addEventListener("click", (e) => {
+  e.preventDefault();
+  openPolicy();
+});
+
+policyBackdrop?.addEventListener("click", closePolicy);
+policyClose?.addEventListener("click", closePolicy);
+policyConfirm?.addEventListener("click", closePolicy);
+
+consentConfirm?.addEventListener("click", () => {
+  if(!consentRequired.checked){
+    alert("필수 동의에 체크해주세요.");
+    return;
+  }
+
+  const action = pendingAction;
+  closeConsent();
+
+  if(!action) return;
+
+  if(action.type === "phone-modal"){
+    openModal();
+  }
+
+  if(action.type === "phone-call"){
+    window.location.href = "tel:" + action.tel;
+  }
+
+  if(action.type === "kakao"){
+    window.open(action.url, "_blank", "noopener");
+  }
+
+  if(action.type === "scroll-cta"){
+    document.getElementById("cta")?.scrollIntoView({
+      behavior:"smooth"
+    });
+  }
+});
