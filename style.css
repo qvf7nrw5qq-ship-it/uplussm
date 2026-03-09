@@ -648,3 +648,14 @@ overflow:hidden;
   height:100%;
   object-fit:cover;
 }
+.qr_grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+@media (max-width:1024px){
+.qr_grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
