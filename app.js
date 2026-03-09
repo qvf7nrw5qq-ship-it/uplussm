@@ -147,9 +147,7 @@ behavior:"smooth"
 });
 });
 });
-/* =========================
-   개인정보 동의 / 상세 약관 모달
-========================= */
+/* ===== 개인정보 동의 / 버튼 연결 ===== */
 
 const consentModal = document.getElementById("consentModal");
 const consentBackdrop = document.getElementById("consentBackdrop");
@@ -157,7 +155,6 @@ const consentClose = document.getElementById("consentClose");
 const consentCancel = document.getElementById("consentCancel");
 const consentConfirm = document.getElementById("consentConfirm");
 const consentRequired = document.getElementById("consentRequired");
-const consentMarketing = document.getElementById("consentMarketing");
 
 const policyModal = document.getElementById("policyModal");
 const policyBackdrop = document.getElementById("policyBackdrop");
@@ -167,45 +164,45 @@ const openPolicyLink = document.getElementById("openPolicyLink");
 
 let pendingAction = null;
 
-function updateConsentButton(){
-  if(!consentConfirm || !consentRequired) return;
+function updateConsentButton() {
+  if (!consentConfirm || !consentRequired) return;
   consentConfirm.disabled = !consentRequired.checked;
 }
 
-function openConsent(action){
+function openConsent(action) {
   pendingAction = action;
-
-  if(consentRequired) consentRequired.checked = false;
-  if(consentMarketing) consentMarketing.checked = false;
+  if (consentRequired) consentRequired.checked = false;
   updateConsentButton();
 
-  consentModal.classList.add("open");
-  consentModal.setAttribute("aria-hidden", "false");
+  if (consentModal) {
+    consentModal.classList.add("open");
+  }
 }
 
-function closeConsent(){
-  consentModal.classList.remove("open");
-  consentModal.setAttribute("aria-hidden", "true");
-  pendingAction = null;
+function closeConsent() {
+  if (consentModal) {
+    consentModal.classList.remove("open");
+  }
 }
 
-function openPolicy(){
-  policyModal.classList.add("open");
-  policyModal.setAttribute("aria-hidden", "false");
+function openPolicy() {
+  if (policyModal) {
+    policyModal.classList.add("open");
+  }
 }
 
-function closePolicy(){
-  policyModal.classList.remove("open");
-  policyModal.setAttribute("aria-hidden", "true");
+function closePolicy() {
+  if (policyModal) {
+    policyModal.classList.remove("open");
+  }
 }
 
 consentRequired?.addEventListener("change", updateConsentButton);
-
 consentBackdrop?.addEventListener("click", closeConsent);
 consentClose?.addEventListener("click", closeConsent);
 consentCancel?.addEventListener("click", closeConsent);
 
-openPolicyLink?.addEventListener("click", (e) => {
+openPolicyLink?.addEventListener("click", function (e) {
   e.preventDefault();
   openPolicy();
 });
@@ -214,8 +211,8 @@ policyBackdrop?.addEventListener("click", closePolicy);
 policyClose?.addEventListener("click", closePolicy);
 policyConfirm?.addEventListener("click", closePolicy);
 
-consentConfirm?.addEventListener("click", () => {
-  if(!consentRequired.checked){
+consentConfirm?.addEventListener("click", function () {
+  if (!consentRequired.checked) {
     alert("필수 동의에 체크해주세요.");
     return;
   }
@@ -223,23 +220,67 @@ consentConfirm?.addEventListener("click", () => {
   const action = pendingAction;
   closeConsent();
 
- 
+  if (!action) return;
 
-  if(action.type === "phone-modal"){
+  if (action.type === "phone-modal") {
     openModal();
   }
 
-  if(action.type === "phone-call"){
+  if (action.type === "phone-call") {
     window.location.href = "tel:" + action.tel;
   }
 
-  if(action.type === "kakao"){
+  if (action.type === "kakao") {
     window.open(action.url, "_blank", "noopener");
   }
 
-  if(action.type === "scroll-cta"){
+  if (action.type === "scroll-cta") {
     document.getElementById("cta")?.scrollIntoView({
-      behavior:"smooth"
+      behavior: "smooth"
     });
   }
+});
+
+/* 지역별 전화 버튼 */
+["btnCallTop", "btnCallHero", "btnCallBottom", "btnCallFab", "btnCallSticky"].forEach(function (id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  el.addEventListener("click", function (e) {
+    e.preventDefault();
+    openConsent({ type: "phone-modal" });
+  });
+});
+
+/* 카드 안 버튼 */
+document.querySelectorAll(".btnCallAny").forEach(function (btn) {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    openConsent({ type: "phone-modal" });
+  });
+});
+
+document.querySelectorAll(".btnScrollCta").forEach(function (btn) {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    openConsent({ type: "scroll-cta" });
+  });
+});
+
+/* 지역 번호 직접 클릭 */
+document.querySelectorAll(".region").forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    const tel = link.dataset.tel;
+    openConsent({ type: "phone-call", tel: tel });
+  });
+});
+
+/* 카카오 버튼 */
+document.querySelectorAll(".consent-kakao").forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    const url = link.dataset.href;
+    openConsent({ type: "kakao", url: url });
+  });
 });
