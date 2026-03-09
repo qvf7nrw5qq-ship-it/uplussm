@@ -659,3 +659,18 @@ gap:20px;
 grid-template-columns:repeat(2,1fr);
 }
 }
+.qr_empty{
+  width:100%;
+  max-width:160px;
+  aspect-ratio:1 / 1;
+  margin:16px auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px dashed #ddd;
+  border-radius:18px;
+  background:#fafafa;
+  color:#999;
+  font-size:14px;
+  font-weight:700;
+}
