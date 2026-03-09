@@ -284,3 +284,39 @@ document.querySelectorAll(".consent-kakao").forEach(function (link) {
     openConsent({ type: "kakao", url: url });
   });
 });
+/* ===== 슬라이더 ===== */
+const sliderTrack = document.getElementById("sliderTrack");
+const prevSlideBtn = document.getElementById("prevSlide");
+const nextSlideBtn = document.getElementById("nextSlide");
+const sliderDots = document.querySelectorAll(".slider__dot");
+
+let currentSlide = 0;
+const totalSlides = 2;
+
+function updateSlider() {
+  if (!sliderTrack) return;
+  sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  sliderDots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentSlide);
+  });
+}
+
+prevSlideBtn?.addEventListener("click", () => {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateSlider();
+});
+
+nextSlideBtn?.addEventListener("click", () => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlider();
+});
+
+sliderDots.forEach((dot) => {
+  dot.addEventListener("click", () => {
+    currentSlide = Number(dot.dataset.slide);
+    updateSlider();
+  });
+});
+
+updateSlider();
