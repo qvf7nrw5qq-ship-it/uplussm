@@ -223,7 +223,7 @@ consentConfirm?.addEventListener("click", () => {
   const action = pendingAction;
   closeConsent();
 
-  if(!action) return;
+ 
 
   if(action.type === "phone-modal"){
     openModal();
