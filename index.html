@@ -306,6 +306,87 @@
   © LG U+ 공식 파트너 상담 페이지<br>
   ※ 본 페이지는 온라인 결제/판매가 아닌 상담 안내용 랜딩입니다.
 </footer>
+<!-- 개인정보 수집·이용 동의 모달 -->
+<div class="consent_modal" id="consentModal" aria-hidden="true">
+  <div class="consent_backdrop" id="consentBackdrop"></div>
 
+  <div class="consent_panel" role="dialog" aria-modal="true" aria-label="개인정보 수집 및 이용 동의">
+    <div class="consent_head">
+      <h3>개인정보 수집 및 이용 동의 (필수)</h3>
+      <button type="button" class="consent_close" id="consentClose">✕</button>
+    </div>
+
+    <div class="consent_body">
+      <div class="consent_box">
+        주식회사 에스엠리퍼블릭은 상담 신청 및 응대를 위해 아래와 같이 개인정보를 수집합니다.<br><br>
+        1. 수집 항목: 성명, 생년월일, 연락처, 관심 상품, 가입통신사, 내/외국인 여부, 연계정보(CI), 중복가입확인정보(DI), 단말기 및 결합 상품 정보 등<br><br>
+        2. 보유 기간: 상담 완료 후 2년 또는 파기 요청 시까지<br><br>
+        3. 동의 거부 권리: 귀하는 동의를 거부할 권리가 있으나, 거부 시 상담 및 연락이 제한될 수 있습니다.
+      </div>
+
+      <div class="consent_links">
+        <a href="#" id="openPolicyLink">[상세 약관 및 개인정보 처리방침 보기]</a>
+      </div>
+
+      <label class="consent_check">
+        <input type="checkbox" id="consentRequired">
+        <span>(필수) 수집 동의</span>
+      </label>
+
+      <label class="consent_check">
+        <input type="checkbox" id="consentMarketing">
+        <span>(선택) 마케팅 동의</span>
+      </label>
+    </div>
+
+    <div class="consent_actions">
+      <button type="button" class="btn btn--ghost" id="consentCancel">취소</button>
+      <button type="button" class="btn btn--primary" id="consentConfirm" disabled>동의하고 진행</button>
+    </div>
+  </div>
+<!-- 개인정보 처리방침 상세 모달 -->
+<div class="policy_modal" id="policyModal" aria-hidden="true">
+  <div class="policy_backdrop" id="policyBackdrop"></div>
+
+  <div class="policy_panel" role="dialog" aria-modal="true" aria-label="개인정보 처리방침 상세">
+    <div class="policy_head">
+      <h3>개인정보 처리방침 상세</h3>
+      <button type="button" class="policy_close" id="policyClose">✕</button>
+    </div>
+
+    <div class="policy_body">
+      <p><b>2. 수집하는 개인정보 항목</b></p>
+      <p>
+        - 성명, 생년월일, 연락처, 가입통신사, 내/외국인 여부, 연계정보(CI),<br>
+        중복가입확인정보(DI), 단말기 및 결합 상품 정보 등
+      </p>
+
+      <br>
+
+      <p><b>3. 개인정보의 보유 및 이용 기간</b></p>
+      <p>
+        - 상담 완료 후 2년 (단, 관련 법령에 의거 보존 필요 시 해당 기간까지 보관)<br>
+        - 고객 요청 시 지체 없이 파기합니다.
+      </p>
+
+      <br>
+
+      <p><b>4. 동의 거부 권리 및 불이익</b></p>
+
+      <div class="policy_box">
+        귀하는 본 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다.<br><br>
+
+        - 필수 항목에 대한 동의 거부 시 상담 및 견적 서비스 이용이 불가능합니다.<br><br>
+
+        - 선택 항목(마케팅)에 대한 동의 거부 시에도 기본 상담 서비스는 이용 가능하나,
+        혜택 및 이벤트 안내가 제한될 수 있습니다.
+      </div>
+    </div>
+
+    <div class="policy_actions">
+      <button type="button" class="btn btn--primary" id="policyConfirm">확인</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
