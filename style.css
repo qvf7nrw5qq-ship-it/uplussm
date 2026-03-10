@@ -1559,3 +1559,203 @@ transition:0.3s;
     height: 54px !important;
   }
 }
+/* ===== 모바일 강제 1열 정리 ===== */
+@media screen and (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  body * {
+    box-sizing: border-box !important;
+  }
+
+  .container,
+  .section .container,
+  .section__inner,
+  .inner,
+  .wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .product-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .product-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
+  .pcard {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    padding: 20px 16px !important;
+    border-radius: 24px !important;
+    margin: 0 !important;
+  }
+
+  .pcard_top {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .card_icon {
+    display: block !important;
+    width: 100% !important;
+    max-width: 140px !important;
+    height: auto !important;
+    max-height: 140px !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+  }
+
+  .pcard_title {
+    display: block !important;
+    width: 100% !important;
+    font-size: 18px !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    word-break: keep-all !important;
+    white-space: normal !important;
+  }
+
+  .pcard_sub {
+    display: block !important;
+    width: 100% !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    word-break: keep-all !important;
+    white-space: normal !important;
+  }
+
+  .pcard_bottom {
+    width: 100% !important;
+    margin-top: 14px !important;
+  }
+
+  .pcard_bottom button,
+  .pcard_bottom .btn,
+  .pcard_bottom .btn-primary,
+  .pcard_bottom .btn-block {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: 12px 14px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    border-radius: 14px !important;
+  }
+
+  .model_list {
+    width: 100% !important;
+  }
+
+  .model_list.active {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-top: 14px !important;
+    padding-top: 14px !important;
+  }
+
+  .model_item {
+    width: 100% !important;
+    min-height: 52px !important;
+    padding: 12px 8px !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    border-radius: 14px !important;
+  }
+
+  .floating {
+    right: 12px !important;
+    bottom: 90px !important;
+  }
+
+  .fab {
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .cta_box_actions,
+  .cta-box-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .cta_box_actions .btn,
+  .cta-box-actions .btn,
+  .cta_box_actions a,
+  .cta-box-actions a {
+    width: 100% !important;
+    min-height: 54px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 15px !important;
+    text-align: center !important;
+    border-radius: 16px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .product-grid {
+    gap: 14px !important;
+  }
+
+  .pcard {
+    padding: 18px 14px !important;
+    border-radius: 20px !important;
+  }
+
+  .card_icon {
+    max-width: 120px !important;
+    max-height: 120px !important;
+  }
+
+  .pcard_title {
+    font-size: 17px !important;
+  }
+
+  .pcard_sub {
+    font-size: 13px !important;
+  }
+
+  .model_list.active {
+    grid-template-columns: 1fr !important;
+  }
+
+  .model_item {
+    font-size: 13px !important;
+  }
+}
