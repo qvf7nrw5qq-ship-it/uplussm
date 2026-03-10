@@ -1214,4 +1214,12 @@ grid-template-columns:repeat(2,1fr);
     grid-template-columns:1fr;
   }
 }
+.pcard:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
 
+.pcard:hover .card_icon{
+transform:scale(1.08);
+transition:0.3s;
+}
