@@ -1324,3 +1324,238 @@ transition:0.3s;
     grid-template-columns:1fr;
   }
 }
+/* ===== 모바일 카드 섹션 깔끔하게 정리 ===== */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+  }
+
+  .container,
+  .section .container,
+  .section__inner,
+  .inner,
+  .wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  .product-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .pcard {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    padding: 20px 16px !important;
+    border-radius: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  .pcard_top {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+  }
+
+  .tag,
+  .tag-hot,
+  .tag--uplus,
+  .tag-uplus {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+    height: auto !important;
+    min-width: auto !important;
+  }
+
+  .card_icon {
+    width: 100% !important;
+    max-width: 140px !important;
+    height: auto !important;
+    max-height: 140px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  .pcard_title {
+    font-size: 18px !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+  }
+
+  .pcard_sub {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    text-align: center !important;
+  }
+
+  .pcard_bottom {
+    width: 100% !important;
+    margin-top: 14px !important;
+  }
+
+  .pcard_bottom .btn,
+  .pcard_bottom .btn-primary,
+  .pcard_bottom .btn-block {
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    border-radius: 14px !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+  }
+
+  .model_list {
+    width: 100% !important;
+  }
+
+  .model_list.active {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-top: 14px !important;
+    padding-top: 14px !important;
+  }
+
+  .model_item {
+    width: 100% !important;
+    min-height: 52px !important;
+    padding: 12px 8px !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    border-radius: 14px !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    text-align: center !important;
+  }
+
+  .section-title,
+  .section h2,
+  .section__title {
+    font-size: 20px !important;
+    line-height: 1.35 !important;
+    word-break: keep-all !important;
+  }
+
+  .section-desc,
+  .section p,
+  .section__desc {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    word-break: keep-all !important;
+  }
+
+  /* 떠있는 버튼 겹침 방지 */
+  .floating {
+    right: 12px !important;
+    bottom: 90px !important;
+    gap: 10px !important;
+  }
+
+  .fab {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  /* 맨 아래 CTA 버튼 모바일 최적화 */
+  .cta-box,
+  .cta_box,
+  .cta-box-actions,
+  .cta_box_actions,
+  .cta_box_actions,
+  .cta_box .btn,
+  .cta-box .btn,
+  .cta_box .btn-primary,
+  .cta-box .btn-primary {
+    box-sizing: border-box !important;
+  }
+
+  .cta_box_actions,
+  .cta-box-actions,
+  .cta_box .cta_box_actions,
+  .cta-box .cta-box-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .cta_box_actions .btn,
+  .cta-box-actions .btn,
+  .cta_box_actions a,
+  .cta-box-actions a {
+    width: 100% !important;
+    min-height: 54px !important;
+    font-size: 15px !important;
+    border-radius: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+
+/* ===== 아주 작은 화면 ===== */
+@media (max-width: 480px) {
+  .container,
+  .section .container,
+  .section__inner,
+  .inner,
+  .wrap {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .pcard {
+    padding: 18px 14px !important;
+    border-radius: 20px !important;
+  }
+
+  .card_icon {
+    max-width: 120px !important;
+    max-height: 120px !important;
+  }
+
+  .pcard_title {
+    font-size: 17px !important;
+  }
+
+  .pcard_sub {
+    font-size: 13px !important;
+  }
+
+  .model_list.active {
+    grid-template-columns: 1fr !important;
+  }
+
+  .model_item {
+    font-size: 13px !important;
+  }
+
+  .pcard_bottom .btn,
+  .pcard_bottom .btn-primary,
+  .pcard_bottom .btn-block {
+    font-size: 13px !important;
+  }
+
+  .fab {
+    width: 54px !important;
+    height: 54px !important;
+  }
+}
