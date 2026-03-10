@@ -321,6 +321,18 @@ sliderDots.forEach((dot) => {
 
 updateSlider();
 <script>
+updateSlider();
+
+function quickConnect() {
+  const ok = confirm("지금 바로 연결할까요?");
+  if (ok) {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+}
+
 function toggleModels(id) {
   const target = document.getElementById(id);
   const allLists = document.querySelectorAll('.model_list');
