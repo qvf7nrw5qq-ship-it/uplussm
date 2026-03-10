@@ -320,3 +320,17 @@ sliderDots.forEach((dot) => {
 });
 
 updateSlider();
+<script>
+function toggleModels(id) {
+  const target = document.getElementById(id);
+  const allLists = document.querySelectorAll('.model_list');
+
+  allLists.forEach(list => {
+    if (list !== target) {
+      list.classList.remove('active');
+    }
+  });
+
+  target.classList.toggle('active');
+}
+</script>
