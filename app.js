@@ -267,15 +267,6 @@ document.querySelectorAll(".btnScrollCta").forEach(function (btn) {
   });
 });
 
-/* 지역 번호 직접 클릭 */
-document.querySelectorAll(".region").forEach(function (link) {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    const tel = link.dataset.tel;
-    openConsent({ type: "phone-call", tel: tel });
-  });
-});
-
 /* 카카오 버튼 */
 document.querySelectorAll(".consent-kakao").forEach(function (link) {
   link.addEventListener("click", function (e) {
