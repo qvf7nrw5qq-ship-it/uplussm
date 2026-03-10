@@ -320,9 +320,6 @@ sliderDots.forEach((dot) => {
 });
 
 updateSlider();
-<script>
-updateSlider();
-
 function quickConnect() {
   const ok = confirm("지금 바로 연결할까요?");
   if (ok) {
@@ -345,4 +342,3 @@ function toggleModels(id) {
 
   target.classList.toggle('active');
 }
-</script>
