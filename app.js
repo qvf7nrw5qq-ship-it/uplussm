@@ -342,3 +342,23 @@ function toggleModels(id) {
 
   target.classList.toggle('active');
 }
+function changeGalaxyImage(imageSrc) {
+  const galaxyImage = document.getElementById("galaxyImage");
+  if (galaxyImage) {
+    galaxyImage.src = imageSrc;
+  }
+}
+
+function changeIphoneImage(imageSrc) {
+  const iphoneImage = document.getElementById("iphoneImage");
+  if (iphoneImage) {
+    iphoneImage.src = imageSrc;
+  }
+}
+
+function changeInternetImage(imageSrc) {
+  const internetImage = document.getElementById("internetImage");
+  if (internetImage) {
+    internetImage.src = imageSrc;
+  }
+}
