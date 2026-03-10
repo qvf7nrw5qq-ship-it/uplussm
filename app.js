@@ -362,3 +362,45 @@ function changeInternetImage(imageSrc) {
     internetImage.src = imageSrc;
   }
 }
+function toggleModels(id) {
+  const target = document.getElementById(id);
+  const allLists = document.querySelectorAll(".model_list");
+
+  allLists.forEach(list => {
+    if (list !== target) {
+      list.classList.remove("active");
+    }
+  });
+
+  target.classList.toggle("active");
+}
+
+function quickConnect() {
+  const contactSection = document.getElementById("cta");
+  if (contactSection) {
+    contactSection.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+}
+
+function openImageModal(imageSrc) {
+  const modal = document.getElementById("imageModal");
+  const target = document.getElementById("imageModalTarget");
+
+  if (modal && target) {
+    target.src = imageSrc;
+    modal.classList.add("active");
+  }
+}
+
+function closeImageModal() {
+  const modal = document.getElementById("imageModal");
+  const target = document.getElementById("imageModalTarget");
+
+  if (modal && target) {
+    modal.classList.remove("active");
+    target.src = "";
+  }
+}
