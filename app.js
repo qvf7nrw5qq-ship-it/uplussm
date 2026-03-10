@@ -389,18 +389,18 @@ function openImageModal(imageSrc) {
   const modal = document.getElementById("imageModal");
   const target = document.getElementById("imageModalTarget");
 
-  if (modal && target) {
-    target.src = imageSrc;
-    modal.classList.add("active");
-  }
+  if (!modal || !target) return;
+
+  target.src = imageSrc;
+  modal.style.display = "block";
 }
 
 function closeImageModal() {
   const modal = document.getElementById("imageModal");
   const target = document.getElementById("imageModalTarget");
 
-  if (modal && target) {
-    modal.classList.remove("active");
-    target.src = "";
-  }
+  if (!modal || !target) return;
+
+  modal.style.display = "none";
+  target.src = "";
 }
