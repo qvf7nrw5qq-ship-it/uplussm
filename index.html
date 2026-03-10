@@ -143,12 +143,12 @@
           <p class="section__desc">아래 항목은 예시(문구/상품명 자유 변경 가능)</p>
         </div>
 
-    <div class="product-grid">
+   <div class="product-grid">
 
   <article class="pcard reveal expandable-card" onclick="toggleModels('galaxyModels')">
     <div class="pcard_top">
       <span class="tag tag-hot">NEW</span>
-      <img src="s26.png" class="card_icon" alt="Galaxy S26">
+      <img src="s26.png" class="card_icon" id="galaxyImage" alt="Galaxy S26">
       <h3 class="pcard_title">Galaxy S26 Series</h3>
       <p class="pcard_sub">출시기념 한정 이벤트!</p>
     </div>
@@ -158,18 +158,18 @@
     </div>
 
     <div class="model_list" id="galaxyModels">
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">Galaxy S26</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">Galaxy S26+</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">Galaxy S26 Ultra</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">Galaxy Z Flip</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">Galaxy Z Fold</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeGalaxyImage('s26.png')">Galaxy S26</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeGalaxyImage('s26plus.png')">Galaxy S26+</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeGalaxyImage('s26ultra.png')">Galaxy S26 Ultra</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeGalaxyImage('zflip.png')">Galaxy Z Flip</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeGalaxyImage('zfold.png')">Galaxy Z Fold</button>
     </div>
   </article>
 
   <article class="pcard reveal expandable-card" onclick="toggleModels('iphoneModels')">
     <div class="pcard_top">
       <span class="tag">HOT</span>
-      <img src="iphone.png" class="card_icon" alt="iPhone">
+      <img src="iphone.png" class="card_icon" id="iphoneImage" alt="iPhone">
       <h3 class="pcard_title">아이폰 라인업</h3>
       <p class="pcard_sub">기변/번호이동 비교 상담</p>
     </div>
@@ -179,17 +179,17 @@
     </div>
 
     <div class="model_list" id="iphoneModels">
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">iPhone 17</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">iPhone 17 Air</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">iPhone 17 Pro</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">iPhone 17 Pro Max</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeIphoneImage('iphone17.png')">iPhone 17</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeIphoneImage('iphone17air.png')">iPhone 17 Air</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeIphoneImage('iphone17pro.png')">iPhone 17 Pro</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeIphoneImage('iphone17promax.png')">iPhone 17 Pro Max</button>
     </div>
   </article>
 
   <article class="pcard reveal expandable-card" onclick="toggleModels('internetModels')">
     <div class="pcard_top">
       <span class="tag tag--uplus">U+</span>
-      <img src="internet-tv.png" class="card_icon" alt="인터넷 TV">
+      <img src="internet-tv.png" class="card_icon" id="internetImage" alt="인터넷 TV">
       <h3 class="pcard_title">인터넷 · TV</h3>
       <p class="pcard_sub">결합/지원금/혜택 상담</p>
     </div>
@@ -199,11 +199,11 @@
     </div>
 
     <div class="model_list" id="internetModels">
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">100메가 인터넷</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">500메가 인터넷</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">1기가 인터넷</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">인터넷 + IPTV</button>
-      <button class="model_item" onclick="event.stopPropagation(); quickConnect()">인터넷 + TV + 휴대폰 결합</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeInternetImage('internet100.png')">100메가 인터넷</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeInternetImage('internet500.png')">500메가 인터넷</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeInternetImage('internet1g.png')">1기가 인터넷</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeInternetImage('internet-tv.png')">인터넷 + IPTV</button>
+      <button class="model_item" onclick="event.stopPropagation(); changeInternetImage('internet-combo.png')">인터넷 + TV + 휴대폰 결합</button>
     </div>
   </article>
 
