@@ -384,23 +384,62 @@ function quickConnect() {
     });
   }
 }
-
 function openImageModal(imageSrc) {
-  const modal = document.getElementById("imageModal");
-  const target = document.getElementById("imageModalTarget");
+  closeImageModal();
 
-  if (!modal || !target) return;
+  const overlay = document.createElement("div");
+  overlay.id = "runtimeImageModal";
+  overlay.style.position = "fixed";
+  overlay.style.inset = "0";
+  overlay.style.background = "rgba(0,0,0,0.6)";
+  overlay.style.zIndex = "99999";
+  overlay.style.display = "flex";
+  overlay.style.alignItems = "center";
+  overlay.style.justifyContent = "center";
+  overlay.style.padding = "20px";
 
-  target.src = imageSrc;
-  modal.style.display = "block";
+  const panel = document.createElement("div");
+  panel.style.position = "relative";
+  panel.style.background = "#fff";
+  panel.style.borderRadius = "24px";
+  panel.style.padding = "20px";
+  panel.style.maxWidth = "760px";
+  panel.style.width = "100%";
+  panel.style.maxHeight = "88vh";
+  panel.style.boxShadow = "0 20px 50px rgba(0,0,0,0.18)";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.innerHTML = "×";
+  closeBtn.style.position = "absolute";
+  closeBtn.style.top = "10px";
+  closeBtn.style.right = "14px";
+  closeBtn.style.border = "none";
+  closeBtn.style.background = "#fff";
+  closeBtn.style.fontSize = "34px";
+  closeBtn.style.lineHeight = "1";
+  closeBtn.style.cursor = "pointer";
+  closeBtn.onclick = closeImageModal;
+
+  const img = document.createElement("img");
+  img.src = imageSrc;
+  img.alt = "상세 이미지";
+  img.style.width = "100%";
+  img.style.maxHeight = "75vh";
+  img.style.objectFit = "contain";
+  img.style.display = "block";
+  img.style.borderRadius = "16px";
+
+  overlay.onclick = function (e) {
+    if (e.target === overlay) closeImageModal();
+  };
+
+  panel.appendChild(closeBtn);
+  panel.appendChild(img);
+  overlay.appendChild(panel);
+  document.body.appendChild(overlay);
 }
 
 function closeImageModal() {
-  const modal = document.getElementById("imageModal");
-  const target = document.getElementById("imageModalTarget");
-
-  if (!modal || !target) return;
-
-  modal.style.display = "none";
-  target.src = "";
+  const oldModal = document.getElementById("runtimeImageModal");
+  if (oldModal) oldModal.remove();
 }
