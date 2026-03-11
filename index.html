@@ -474,6 +474,68 @@
     <img id="imageModalTarget" src="" alt="상세 이미지">
   </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("quickConsultForm");
+  if (!form) return;
 
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const agree = document.getElementById("agree");
+    if (agree && !agree.checked) {
+      alert("개인정보 수집 및 이용 동의가 필요합니다.");
+      return;
+    }
+
+    const name = document.getElementById("name")?.value.trim() || "";
+    const phone = document.getElementById("phone")?.value.trim() || "";
+    const product = document.getElementById("product")?.value || "";
+    const region = document.getElementById("region")?.value || "";
+    const memo = document.getElementById("memo")?.value.trim() || "";
+
+    if (!name || !phone || !product) {
+      alert("성함, 연락처, 관심 상품을 입력해주세요.");
+      return;
+    }
+
+    const submitBtn = form.querySelector(".quick-form__submit");
+    const originalText = submitBtn ? submitBtn.textContent : "";
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "접수 중...";
+    }
+
+    const params = new URLSearchParams({
+      name,
+      phone,
+      product,
+      region,
+      memo
+    });
+
+    const url = "https://script.google.com/macros/s/AKfycbxSWq5B68P96e9ZoQZx_38Ounywvjltd5wqksxZv-yJqV2HSlU_AxfIDObL3Tk-hMt3qQ/exec?" + params.toString();
+
+    fetch(url, {
+      method: "GET",
+      mode: "no-cors"
+    })
+    .then(() => {
+      alert("상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.");
+      form.reset();
+    })
+    .catch(() => {
+      alert("전송 중 오류가 발생했습니다. 다시 시도해주세요.");
+    })
+    .finally(() => {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText || "최대 혜택 상담 신청";
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
