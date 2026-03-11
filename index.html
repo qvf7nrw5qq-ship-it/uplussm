@@ -134,7 +134,75 @@
         </div>
       </div>
     </section>
+<section class="quick-form">
+  <div class="container">
+    <div class="quick-form__box">
+      <h2 class="quick-form__title">📋 빠른 상담 신청</h2>
+      <p class="quick-form__desc">관심 상품과 상담 방식을 남겨주시면 빠르게 안내해드려요.</p>
 
+      <form class="quick-form__form" id="quickConsultForm">
+        <div class="quick-form__grid">
+          <div class="quick-form__group">
+            <label for="name">성함</label>
+            <input type="text" id="name" name="name" placeholder="성함을 입력해주세요" required>
+          </div>
+
+          <div class="quick-form__group">
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+          </div>
+
+          <div class="quick-form__group">
+            <label for="product">관심 상품</label>
+            <select id="product" name="product" required>
+              <option value="">선택해주세요</option>
+              <option>휴대폰 기기변경</option>
+              <option>번호이동</option>
+              <option>신규개통</option>
+              <option>인터넷/TV</option>
+              <option>인터넷 + 휴대폰 결합</option>
+            </select>
+          </div>
+
+          <div class="quick-form__group">
+            <label for="contactType">상담 방식</label>
+            <select id="contactType" name="contactType" required>
+              <option value="">선택해주세요</option>
+              <option>카카오톡 상담</option>
+              <option>전화 상담</option>
+            </select>
+          </div>
+
+          <div class="quick-form__group quick-form__group--full">
+            <label for="region">지역</label>
+            <select id="region" name="region">
+              <option value="">선택해주세요</option>
+              <option>안산</option>
+              <option>시흥</option>
+              <option>화성</option>
+              <option>기타 / 온라인 배송 상담</option>
+            </select>
+          </div>
+
+          <div class="quick-form__group quick-form__group--full">
+            <label for="memo">추가 요청사항</label>
+            <textarea id="memo" name="memo" rows="4" placeholder="원하시는 기종 / 상담 내용 / 문의사항을 적어주세요"></textarea>
+          </div>
+        </div>
+
+        <div class="quick-form__agree">
+          <label class="quick-form__check">
+            <input type="checkbox" id="agree" required>
+            <span>개인정보 수집 및 이용에 동의합니다. (필수)</span>
+          </label>
+          <a href="#privacy">약관 보기</a>
+        </div>
+
+        <button type="submit" class="quick-form__submit">맞춤 혜택 상담 신청</button>
+      </form>
+    </div>
+  </div>
+</section>
     <!-- PRODUCT GRID -->
     <section class="section section--alt">
       <div class="container">
