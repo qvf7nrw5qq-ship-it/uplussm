@@ -119,15 +119,7 @@ b{font-weight:900}
   padding:22px 0 10px;
 }
 .hero::before{
-  content:"";
-  position:absolute;
-  inset:-140px -40px auto -40px;
-  height:360px;
-  background:
-    radial-gradient(80% 120% at 30% 20%, rgba(255,0,122,.22) 0%, rgba(255,0,122,0) 55%),
-    radial-gradient(60% 120% at 70% 10%, rgba(255,74,160,.18) 0%, rgba(255,74,160,0) 55%),
-    radial-gradient(70% 120% at 50% 90%, rgba(99,102,241,.10) 0%, rgba(99,102,241,0) 55%);
-  pointer-events:none;
+display:none;
 }
 .hero__grid{
   display:grid;
