@@ -1754,3 +1754,149 @@ transition:0.3s;
 section{
 padding:80px 20px;
 }
+.quick-form{
+  padding: 70px 20px;
+}
+
+.quick-form__box{
+  max-width: 760px;
+  margin: 0 auto;
+  background: #fff;
+  border: 2px solid #ff2d8d;
+  border-radius: 28px;
+  padding: 34px 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.06);
+}
+
+.quick-form__title{
+  margin: 0 0 8px;
+  font-size: 34px;
+  font-weight: 800;
+  text-align: center;
+  color: #222;
+}
+
+.quick-form__desc{
+  margin: 0 0 28px;
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+}
+
+.quick-form__form{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.quick-form__grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.quick-form__group{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quick-form__group--full{
+  grid-column: 1 / -1;
+}
+
+.quick-form__group label{
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+}
+
+.quick-form__group input,
+.quick-form__group select,
+.quick-form__group textarea{
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  font-size: 15px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.quick-form__group input:focus,
+.quick-form__group select:focus,
+.quick-form__group textarea:focus{
+  outline: none;
+  border-color: #ff2d8d;
+  box-shadow: 0 0 0 4px rgba(255,45,141,.08);
+}
+
+.quick-form__agree{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.quick-form__check{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #444;
+  font-size: 14px;
+}
+
+.quick-form__agree a{
+  font-size: 14px;
+  color: #ff2d8d;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.quick-form__submit{
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #ff008c, #ff4db3);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(255,0,140,.28);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.quick-form__submit:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(255,0,140,.34);
+}
+
+@media (max-width: 768px){
+  .quick-form{
+    padding: 50px 16px;
+  }
+
+  .quick-form__box{
+    padding: 24px 18px;
+    border-radius: 22px;
+  }
+
+  .quick-form__title{
+    font-size: 26px;
+  }
+
+  .quick-form__grid{
+    grid-template-columns: 1fr;
+  }
+
+  .quick-form__group--full{
+    grid-column: auto;
+  }
+
+  .quick-form__submit{
+    font-size: 18px;
+    padding: 16px 18px;
+  }
+}
