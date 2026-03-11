@@ -475,41 +475,6 @@
     <img id="imageModalTarget" src="" alt="상세 이미지">
   </div>
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("quickConsultForm");
-  if (!form) return;
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const product = document.getElementById("product").value;
-    const region = document.getElementById("region").value;
-    const memo = document.getElementById("memo").value.trim();
-
-    const url = "https://script.google.com/macros/s/AKfycbxSWq5B68P96e9ZoQZx_38Ounywvjltd5wqksxZv-yJqV2HSlU_AxfIDObL3Tk-hMt3qQ/exec";
-    const params = new URLSearchParams({
-      name: name,
-      phone: phone,
-      product: product,
-      region: region,
-      memo: memo
-    });
-
-    fetch(url + "?" + params.toString())
-      .then(res => res.text())
-      .then(data => {
-        alert("상담 신청이 완료되었습니다.");
-        form.reset();
-      })
-      .catch(err => {
-        alert("전송 실패. 다시 시도해주세요.");
-        console.error(err);
-      });
-  });
-});
-</script>
 </body>
 </html>
