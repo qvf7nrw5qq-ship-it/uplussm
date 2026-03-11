@@ -474,40 +474,67 @@
     <img id="imageModalTarget" src="" alt="상세 이미지">
   </div>
 </div>
- <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("quickConsultForm");
+  if (!form) {
+    alert("폼을 찾지 못했습니다.");
+    return;
+  }
 
-const form = document.getElementById("quickConsultForm");
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-form.addEventListener("submit", async function(e){
+    const agree = document.getElementById("agree");
+    if (agree && !agree.checked) {
+      alert("개인정보 수집 및 이용 동의가 필요합니다.");
+      return;
+    }
 
-e.preventDefault();
+    const name = document.getElementById("name")?.value.trim() || "";
+    const phone = document.getElementById("phone")?.value.trim() || "";
+    const product = document.getElementById("product")?.value || "";
+    const region = document.getElementById("region")?.value || "";
+    const memo = document.getElementById("memo")?.value.trim() || "";
 
-const name = document.getElementById("name").value.trim();
-const phone = document.getElementById("phone").value.trim();
-const product = document.getElementById("product").value;
-const region = document.getElementById("region").value;
-const memo = document.getElementById("memo").value.trim();
+    if (!name || !phone || !product) {
+      alert("성함, 연락처, 관심 상품을 입력해주세요.");
+      return;
+    }
 
-const data = {
-name,
-phone,
-product,
-region,
-memo
-};
+    const submitBtn = form.querySelector(".quick-form__submit");
+    const originalText = submitBtn ? submitBtn.textContent : "";
 
-await fetch("https://script.google.com/macros/s/AKfycbz6E5Rd3d3MOTxezOFF_dDfpoGaTJLFknrviWw6xsZSXPXCAwyKV0lA2f6FRwvQYCshKw/exec",{
-method:"POST",
-body:JSON.stringify(data)
-});
+    try {
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "접수 중...";
+      }
 
-alert("상담 신청이 접수되었습니다.");
+      const formData = new URLSearchParams();
+      formData.append("name", name);
+      formData.append("phone", phone);
+      formData.append("product", product);
+      formData.append("region", region);
+      formData.append("memo", memo);
 
-form.reset();
+      await fetch("https://script.google.com/macros/s/AKfycbyYZhYv_S37GFNbYhYUP24Tk9Oh9exUk_oU4KlT3UFFpym_yPE5NWmENsg3yBmG_Gs0vg/exec", {
+        method: "POST",
+        body: formData
+      });
 
-});
-
+      alert("상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.");
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      alert("전송 중 오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText || "최대 혜택 상담 신청";
+      }
+    }
+  });
 });
 </script>
 </body>
