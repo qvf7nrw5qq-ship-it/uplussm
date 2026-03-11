@@ -1900,22 +1900,3 @@ padding:80px 20px;
     padding: 16px 18px;
   }
 }
-.consult_form{
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-  margin-top:30px;
-}
-
-.consult_form iframe{
-  width:100%;
-  min-height:950px;
-  border:0;
-}
-
-@media (max-width:768px){
-  .consult_form iframe{
-    min-height:1100px;
-  }
-}
