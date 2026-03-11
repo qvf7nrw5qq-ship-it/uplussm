@@ -140,7 +140,10 @@
       <h2 class="quick-form__title">📋 빠른 상담 신청</h2>
       <p class="quick-form__desc">관심 상품과 상담 방식을 남겨주시면 빠르게 안내해드려요.</p>
 
-      <form class="quick-form__form" id="quickConsultForm">
+    <form class="quick-form__form" id="quickConsultForm"
+      action="https://script.google.com/macros/s/AKfycbxSWq5B68P96e9ZoQZx_38Ounywvjltd5wqksxZv-yJqV2HSlU_AxfIDObL3Tk-hMt3qQ/exec"
+      method="GET"
+      target="hidden_iframe">
         <div class="quick-form__grid">
           <div class="quick-form__group">
             <label for="name">성함</label>
@@ -191,6 +194,7 @@
 
         <button type="submit" class="quick-form__submit">최대 혜택 상담 신청</button>
       </form>
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
     </div>
   </div>
 </section>
@@ -480,10 +484,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!form) return;
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
     const agree = document.getElementById("agree");
     if (agree && !agree.checked) {
+      e.preventDefault();
       alert("개인정보 수집 및 이용 동의가 필요합니다.");
       return;
     }
@@ -491,10 +494,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const name = document.getElementById("name")?.value.trim() || "";
     const phone = document.getElementById("phone")?.value.trim() || "";
     const product = document.getElementById("product")?.value || "";
-    const region = document.getElementById("region")?.value || "";
-    const memo = document.getElementById("memo")?.value.trim() || "";
 
     if (!name || !phone || !product) {
+      e.preventDefault();
       alert("성함, 연락처, 관심 상품을 입력해주세요.");
       return;
     }
@@ -507,33 +509,15 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.textContent = "접수 중...";
     }
 
-    const params = new URLSearchParams({
-      name,
-      phone,
-      product,
-      region,
-      memo
-    });
-
-    const url = "https://script.google.com/macros/s/AKfycbxSWq5B68P96e9ZoQZx_38Ounywvjltd5wqksxZv-yJqV2HSlU_AxfIDObL3Tk-hMt3qQ/exec?" + params.toString();
-
-    fetch(url, {
-      method: "GET",
-      mode: "no-cors"
-    })
-    .then(() => {
+    setTimeout(function () {
       alert("상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.");
       form.reset();
-    })
-    .catch(() => {
-      alert("전송 중 오류가 발생했습니다. 다시 시도해주세요.");
-    })
-    .finally(() => {
+
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText || "최대 혜택 상담 신청";
       }
-    });
+    }, 1200);
   });
 });
 </script>
