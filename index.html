@@ -488,54 +488,25 @@ document.addEventListener("DOMContentLoaded", function () {
   let submitted = false;
 
  <script>
+<script>
 const form = document.getElementById("quickConsultForm");
-const iframe = document.querySelector('iframe[name="hidden_iframe"]');
 const submitBtn = document.querySelector(".quick-form__submit");
 
-let submitted = false;
-
-form.addEventListener("submit", function (e) {
-
-  const agree = document.getElementById("agree");
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const product = document.getElementById("product").value.trim();
-
-  if (!agree.checked) {
-    e.preventDefault();
-    alert("개인정보 수집 및 이용 동의가 필요합니다.");
-    return;
-  }
-
-  if (!name || !phone || !product) {
-    e.preventDefault();
-    alert("성함, 연락처, 관심 상품을 입력해주세요.");
-    return;
-  }
-
-  submitted = true;
-
+form.addEventListener("submit", function () {
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = "접수 중...";
   }
-});
 
-iframe.addEventListener("load", function () {
+  setTimeout(function () {
+    alert("상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.");
+    form.reset();
 
-  if (!submitted) return;
-
-  submitted = false;
-
-  alert("상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.");
-
-  form.reset();
-
-  if (submitBtn) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = "최대 혜택 상담 신청";
-  }
-
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "최대 혜택 상담 신청";
+    }
+  }, 1000);
 });
 </script>
 </body>
