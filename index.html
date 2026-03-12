@@ -142,8 +142,8 @@
 <form class="quick-form__form" id="quickConsultForm"
   action="https://script.google.com/macros/s/AKfycbych37LjihXIb7qUHn0z0l22kqCjzGF5wN_Q9HgTJDOZHl60m_nAj9u2iZHcCVh3PWV/exec"
   method="POST"
-  target="hidden_iframe"
-  onsubmit="setTimeout(function(){alert('상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.'); document.getElementById('quickConsultForm').reset();}, 700);">
+target="hidden_iframe">
+
         <div class="quick-form__grid">
           <div class="quick-form__group">
             <label for="name">성함</label>
@@ -194,7 +194,7 @@
 
         <button type="submit" class="quick-form__submit">최대 혜택 상담 신청</button>
       </form>
-      <iframe name="hidden_iframe" style="display:none;"></iframe>  
+      <iframe id="hidden_iframe" name="hidden_iframe" style="display:none;"></iframe>
     </div>
   </div>
 </section>
@@ -482,34 +482,33 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("quickConsultForm");
   const iframe = document.getElementById("hidden_iframe");
-  const submitBtn = form ? form.querySelector(".quick-form__submit") : null;
+  const submitBtn = document.querySelector(".quick-form__submit");
 
   if (!form || !iframe) return;
 
   let submitted = false;
-<script>
-const form = document.getElementById("quickConsultForm");
-const submitBtn = document.querySelector(".quick-form__submit");
 
-form.addEventListener("submit", function () {
+  form.addEventListener("submit", function () {
+    submitted = true;
 
-  if (submitBtn) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = "접수 중...";
-  }
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "접수 중...";
+    }
+  });
 
-  setTimeout(function () {
+  iframe.addEventListener("load", function () {
+    if (!submitted) return;
+
+    submitted = false;
     alert("상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.");
-
     form.reset();
 
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.textContent = "최대 혜택 상담 신청";
     }
-
-  }, 700);
-
+  });
 });
 </script>
 </body>
