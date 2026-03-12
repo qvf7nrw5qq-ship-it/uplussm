@@ -140,9 +140,10 @@
       <h2 class="quick-form__title">📋 빠른 상담 신청</h2>
       <p class="quick-form__desc">관심 상품과 상담 방식을 남겨주시면 빠르게 안내해드려요.</p>
 <form class="quick-form__form" id="quickConsultForm"
-action="https://script.google.com/macros/s/AKfycbych37LjihXIb7qUHn0z0l22kqCjzGF5wN_Q9HgTJDOZHl60m_nAj9u2iZHcCVh3PWV/exec"
-method="POST"
-target="hidden_iframe">
+  action="https://script.google.com/macros/s/AKfycbych37LjihXIb7qUHn0z0l22kqCjzGF5wN_Q9HgTJDOZHl60m_nAj9u2iZHcCVh3PWV/exec"
+  method="POST"
+  target="hidden_iframe"
+  onsubmit="setTimeout(function(){alert('상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.'); document.getElementById('quickConsultForm').reset();}, 700);">
         <div class="quick-form__grid">
           <div class="quick-form__group">
             <label for="name">성함</label>
@@ -486,13 +487,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!form || !iframe) return;
 
   let submitted = false;
-
- <script>
 <script>
 const form = document.getElementById("quickConsultForm");
 const submitBtn = document.querySelector(".quick-form__submit");
 
 form.addEventListener("submit", function () {
+
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = "접수 중...";
@@ -500,13 +500,16 @@ form.addEventListener("submit", function () {
 
   setTimeout(function () {
     alert("상담 신청이 완료되었습니다. 빠르게 연락드리겠습니다.");
+
     form.reset();
 
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.textContent = "최대 혜택 상담 신청";
     }
-  }, 1000);
+
+  }, 700);
+
 });
 </script>
 </body>
