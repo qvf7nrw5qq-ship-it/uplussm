@@ -1900,3 +1900,7 @@ padding:80px 20px;
     padding: 16px 18px;
   }
 }
+.container{
+  max-width: 1000px;
+  margin: 0 auto;
+}
